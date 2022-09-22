@@ -3,7 +3,7 @@ using LifeSimulation.WorldInterfaces;
 
 namespace LifeSimulation.ComponentInterfaces
 {
-    public interface IComponent : IUpdatable
+    public interface IComponent
     {
         protected ICreature CurrentCreature { get; set; }
 

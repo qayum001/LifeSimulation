@@ -22,17 +22,7 @@ namespace LifeSimulation.Components
             return _instance;
         }
 
-        void IUpdatable.Init()
-        {
-            throw new System.NotImplementedException();
-        }
-
         void IComponent.SetCurrentCell()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        void IUpdatable.Update()
         {
             throw new System.NotImplementedException();
         }
