@@ -1,4 +1,4 @@
-﻿using System;
+﻿using LifeSimulation.ThreadControll;
 
 namespace LifeSimulation
 {
@@ -6,7 +6,11 @@ namespace LifeSimulation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var simulation = new Simulation1();
+            var threadControll = new ThreadController(simulation);
+
+            simulation.Start();
+            threadControll.Start();
         }
     }
 }
