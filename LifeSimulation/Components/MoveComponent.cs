@@ -13,10 +13,10 @@ namespace LifeSimulation.Components
 
         void IComponent.Action()
         {
-            throw new NotImplementedException();
+            Move();
         }
 
-        void IComponent.SetCurrentCell()
+        void IComponent.SetCurrentCell(ICreature creature)
         {
             throw new NotImplementedException();
         }
@@ -26,6 +26,11 @@ namespace LifeSimulation.Components
             if (_instance == null)
                 _instance = new MoveComponent();
             return _instance;
+        }
+
+        private void Move()
+        {
+
         }
     }
 }

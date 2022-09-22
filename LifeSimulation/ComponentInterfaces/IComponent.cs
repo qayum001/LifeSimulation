@@ -9,7 +9,7 @@ namespace LifeSimulation.ComponentInterfaces
 
         public void Action();
 
-        public void SetCurrentCell();
+        public void SetCurrentCell(ICreature creature);
 
         public IComponent GetComponentInstance();
     }

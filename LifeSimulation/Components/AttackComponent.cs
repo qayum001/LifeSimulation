@@ -22,7 +22,7 @@ namespace LifeSimulation.Components
             return _instance;
         }
 
-        void IComponent.SetCurrentCell()
+        void IComponent.SetCurrentCell(ICreature creature)
         {
             throw new System.NotImplementedException();
         }
