@@ -5,12 +5,12 @@ namespace LifeSimulation.WorldInterfaces
 {
     public interface IWorld : IUpdatable
     {
-        public Map Map { get; set; }
+        Map Map { get; set; }
 
-        public Environment Environment { get; set; }
+        Environment Environment { get; set; }
 
-        public ICreature[,] Creatures { get; set; }
+        ICreature[,] Creatures { get; set; }
 
-        public LifeController Controller { get; set; }
+        LifeController Controller { get; set; }
     }
 }

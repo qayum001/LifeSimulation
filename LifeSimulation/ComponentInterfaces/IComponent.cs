@@ -5,12 +5,12 @@ namespace LifeSimulation.ComponentInterfaces
 {
     public interface IComponent
     {
-        protected ICreature CurrentCreature { get; set; }
+        ICreature CurrentCreature { get; set; }
 
-        public void Action();
+        void Action();
 
-        public void SetCurrentCell(ICreature creature);
+        void SetCurrentCell(ICreature creature);
 
-        public IComponent GetComponentInstance();
+        IComponent GetComponentInstance();
     }
 }

@@ -8,24 +8,21 @@ namespace LifeSimulation.Components
     public class RotateComponent : IComponent
     {
         private static IComponent _instance;
+        
+        public ICreature CurrentCreature { get; set; }
 
-        ICreature IComponent.CurrentCreature { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        void IComponent.Action()
+        public void Action()
         {
             throw new NotImplementedException();
         }
 
-        IComponent IComponent.GetComponentInstance()
+        public IComponent GetComponentInstance()
         {
             if (_instance == null)
                 _instance = new MoveComponent();
             return _instance;
         }
 
-        void IComponent.SetCurrentCell(ICreature creature)
-        {
-            throw new NotImplementedException();
-        }
+        public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
     }
 }

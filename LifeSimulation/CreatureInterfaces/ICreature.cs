@@ -6,10 +6,10 @@ namespace LifeSimulation.ActiveObjectInterfaces
 {
     public interface ICreature : IUpdatable
     {
-        public double Energy { get; set; }
+        double Energy { get; set; }
 
-        protected LifeController lifeController { get; set; }
+        LifeController lifeController { get; set; }
 
-        public Transform Transform { get; set; }
+        Transform Transform { get; set; }
     }
 }

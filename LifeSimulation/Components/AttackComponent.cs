@@ -8,23 +8,20 @@ namespace LifeSimulation.Components
     {
         private static IComponent _instance;
 
-        ICreature IComponent.CurrentCreature { get; set; }
+        public ICreature CurrentCreature { get; set; }
 
-        void IComponent.Action()
+        public void Action()
         {
             throw new System.NotImplementedException();
         }
 
-        IComponent IComponent.GetComponentInstance()
+        public IComponent GetComponentInstance()
         {
             if (_instance == null)
                 _instance = new MoveComponent();
             return _instance;
         }
 
-        void IComponent.SetCurrentCell(ICreature creature)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
     }
 }

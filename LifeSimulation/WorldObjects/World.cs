@@ -10,17 +10,17 @@ namespace LifeSimulation.WorldObjects
 {
     public class World : IWorld
     {
-        Map IWorld.Map { get; set; }
-        Environment IWorld.Environment { get; set; }
-        ICreature[,] IWorld.Creatures { get; set; }
-        LifeController IWorld.Controller { get; set; }
+        public Map Map { get; set; }
+        public Environment Environment { get; set; }
+        public ICreature[,] Creatures { get; set; }
+        public LifeController Controller { get; set; }
 
-        void IUpdatable.Init()
+        public void Init()
         {
             throw new NotImplementedException();
         }
 
-        void IUpdatable.Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }

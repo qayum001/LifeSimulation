@@ -8,7 +8,7 @@ namespace LifeSimulation.WorldInterfaces
 {
     public interface IUpdatable
     {
-        public void Init();
-        public void Update();
+        void Init();
+        void Update();
     }
 }
