@@ -1,15 +1,11 @@
 ﻿using LifeSimulation.ActiveObjectInterfaces;
 using LifeSimulation.WorldInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LifeSimulation.WorldObjects
 {
     public class World : IWorld
     {
+        public (int x, int y) MapSize { get; set; }
         public Map Map { get; set; }
         public Environment Environment { get; set; }
         public ICreature[,] Creatures { get; set; }
@@ -17,12 +13,23 @@ namespace LifeSimulation.WorldObjects
 
         public void Init()
         {
-            throw new NotImplementedException();
+            MapSize = new(100, 100);
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            Environment.Update();
+            UpdateCells();
         }
+
+        #region Private Methods
+        private void UpdateCells()
+        {
+            foreach(var cell in Creatures)
+            {
+                cell?.Update();
+            }
+        }
+        #endregion
     }
 }
