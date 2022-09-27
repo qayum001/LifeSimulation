@@ -25,7 +25,12 @@ namespace LifeSimulation.Components
 
         private void Move()
         {
-
+            switch (CurrentCreature.Transform.Direction)
+            {
+                case 0:
+                    CurrentCreature.Transform.X = CurrentCreature.Transform.X - 1;
+                    CurrentCreature.Transform.Y = CurrentCreature.Transform.Y - 1;
+            }
         }
 
         public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
