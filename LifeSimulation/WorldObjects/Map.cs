@@ -34,6 +34,11 @@ namespace LifeSimulation.WorldObjects
             return Spots[position.X, position.Y].IsFree;
         }
 
+        public bool IsAvaible(Position position)
+        {
+            return position.X >= 0 && position.Y >= 0 && position.X < _mapSize.x && position.Y < _mapSize.y;
+        }
+
         private void InitSpots()
         {
             _availableSunEnergy = 0.0;
