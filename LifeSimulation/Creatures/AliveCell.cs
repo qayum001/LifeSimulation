@@ -8,11 +8,9 @@ namespace LifeSimulation.Creatures
 {
     public class AliveCell : IActiveCreature
     {
-        public double Energy { get; set; }
-
-        public IComponent Components { get; }
-
-        public LifeController lifeController { get ; set; }
+        public double Energy { get; private set; }
+        public IComponent Components { get; private set; }
+        public LifeController lifeController { get ; private set; }
         public Transform Transform { get; set; }
 
         public void Init()

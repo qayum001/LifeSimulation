@@ -4,6 +4,6 @@ namespace LifeSimulation.CreatureInterfaces
 {
     public abstract class Creator
     {
-        public abstract ICreature GetActiveCreature(string param);
+        public abstract ICreature GetActiveCreature();
     }
 }

@@ -3,11 +3,11 @@ using LifeSimulation.CreatureInterfaces;
 
 namespace LifeSimulation.Creatures
 {
-    internal class AliveCellCreator : Creator
+    public class AliveCellCreator : Creator
     {
-        public override ICreature GetActiveCreature(string param)
+        public override ICreature GetActiveCreature()
         {
-            return null;
+            return new AliveCell();
         }
     }
 }

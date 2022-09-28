@@ -8,9 +8,7 @@ namespace LifeSimulation.CreatureTransform
 {
     public class Transform
     {
-        public int X { get; set; }
-
-        public int Y { get; set; }
+        public Position Position { get; set; }
 
         public Direction Direction { get; set; }
     }

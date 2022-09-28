@@ -1,11 +1,12 @@
-﻿using LifeSimulation.WorldInterfaces;
+﻿using LifeSimulation.CreatureTransform;
+using LifeSimulation.WorldInterfaces;
 
 namespace LifeSimulation.WorldObjects
 {
     public class Map : IUpdatable
     {
         private (int x, int y) _mapSize;
-        private double availableSunEnergy;
+        private double _availableSunEnergy;
         public Spot[,] Spots { get; set; }
 
         public Map((int x, int y) mapSize)
@@ -25,12 +26,17 @@ namespace LifeSimulation.WorldObjects
 
         public void SetAvaibleSunEnergy(double avaibleSunEnergy)
         {
-            availableSunEnergy = avaibleSunEnergy;
+            _availableSunEnergy = avaibleSunEnergy;
+        }
+
+        public bool IsFree(Position position)
+        {
+            return Spots[position.X, position.Y].IsFree;
         }
 
         private void InitSpots()
         {
-            availableSunEnergy = 0.0;
+            _availableSunEnergy = 0.0;
 
             Spots = new Spot[_mapSize.x, _mapSize.y];
             
@@ -50,7 +56,7 @@ namespace LifeSimulation.WorldObjects
                 double currentSunEnergy = 1.3 - (_mapSize.y / i); // helps to set sun energy for each level of map
                 for(int j = 0; j < _mapSize.x; j++)
                 {
-                    Spots[j, i].SpotSunEnergy = availableSunEnergy * currentSunEnergy;
+                    Spots[j, i].SpotSunEnergy = _availableSunEnergy * currentSunEnergy;
                 }
             }
         }

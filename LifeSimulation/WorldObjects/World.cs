@@ -11,14 +11,24 @@ namespace LifeSimulation.WorldObjects
         public ICreature[,] Creatures { get; set; }
         public LifeController Controller { get; set; }
 
-        public void Init()
+        public World()
         {
             MapSize = new(100, 100);
+            Map = new Map(MapSize);
+            Environment = new Environment();
+            Controller = new LifeController(this);
+        }
+
+        public void Init()
+        {
+            Map.Init();
+            Environment.Init();
+            Controller.CreateCreature(100);
         }
 
         public void Update()
         {
-            Environment.Update();
+            UpdateEnvironment();
             UpdateCells();
         }
 
@@ -29,6 +39,13 @@ namespace LifeSimulation.WorldObjects
             {
                 cell?.Update();
             }
+        }
+
+        private void UpdateEnvironment()//sets updated sun energy to map
+        {
+            Environment.Update();
+            Map.SetAvaibleSunEnergy(Environment.AvailableSunEnergy);
+            Map.Update();
         }
         #endregion
     }
