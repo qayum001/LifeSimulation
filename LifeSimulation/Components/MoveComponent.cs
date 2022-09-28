@@ -30,6 +30,32 @@ namespace LifeSimulation.Components
                 case 0:
                     CurrentCreature.Transform.X = CurrentCreature.Transform.X - 1;
                     CurrentCreature.Transform.Y = CurrentCreature.Transform.Y - 1;
+                    break;
+                case 1:
+                    CurrentCreature.Transform.Y = CurrentCreature.Transform.Y - 1;
+                    break;
+                case 2:
+                    CurrentCreature.Transform.X = CurrentCreature.Transform.X + 1;
+                    CurrentCreature.Transform.Y = CurrentCreature.Transform.Y - 1;
+                    break;
+                case 3:
+                    CurrentCreature.Transform.X = CurrentCreature.Transform.X + 1;
+                    break;
+                case 4:
+                    CurrentCreature.Transform.X = CurrentCreature.Transform.X + 1;
+                    CurrentCreature.Transform.Y = CurrentCreature.Transform.Y + 1;
+                    break;
+                case 5:
+                    CurrentCreature.Transform.Y = CurrentCreature.Transform.Y - 1;
+                    break;
+                case 6:
+                    CurrentCreature.Transform.X = CurrentCreature.Transform.X - 1;
+                    CurrentCreature.Transform.Y = CurrentCreature.Transform.Y + 1;
+                    break;
+                case 7:
+                    CurrentCreature.Transform.X = CurrentCreature.Transform.X - 1;
+                    break;
+
             }
         }
 
