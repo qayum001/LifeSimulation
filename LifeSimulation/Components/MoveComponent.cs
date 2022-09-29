@@ -1,7 +1,6 @@
 ﻿using LifeSimulation.ActiveObjectInterfaces;
 using LifeSimulation.ComponentInterfaces;
 using LifeSimulation.WorldInterfaces;
-using System;
 
 namespace LifeSimulation.Components
 {

@@ -5,16 +5,20 @@ namespace LifeSimulation.ControlPart
 {
     public class SensesCollector : ISensesCollector
     {
-        private ISensor[] _sensors;
+        private readonly ISensor[] _sensors;
 
-        private void InitSensors()
+        public SensesCollector(ISensor[] sensors)
         {
-            _sensors = new ISensor[4];
+            _sensors = sensors;
         }
 
         public double[] GetSenses()
         {
-            return null;
+            var result = new double[_sensors.Length];
+
+            for (var i = 0; i < _sensors.Length; i++) result[i] = _sensors[i].GetSense();
+
+            return result;
         }
     }
 }

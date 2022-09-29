@@ -8,7 +8,9 @@ namespace LifeSimulation.ActiveObjectInterfaces
     {
         double Energy { get; }
 
-        LifeController lifeController { get; }
+        LifeController LifeController { get; }
+
+        MapController MapController { get; }
 
         Transform Transform { get; }
     }

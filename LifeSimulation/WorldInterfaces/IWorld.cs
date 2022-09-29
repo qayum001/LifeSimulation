@@ -13,6 +13,8 @@ namespace LifeSimulation.WorldInterfaces
 
         ICreature[,] Creatures { get; set; }
 
-        LifeController Controller { get; set; }
+        LifeController LifeController { get; set; }
+
+        MapController MapController { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using LifeSimulation.ActiveObjectInterfaces;
 using LifeSimulation.CreatureInterfaces;
-using LifeSimulation.Creatures;
 using LifeSimulation.CreatureTransform;
+using LifeSimulation.Creatures;
 using LifeSimulation.WorldInterfaces;
 
 namespace LifeSimulation.WorldObjects
@@ -19,7 +19,8 @@ namespace LifeSimulation.WorldObjects
 
         public ICreature GetCreature(Position position)
         {
-
+            if (_world.Creatures[position.X, position.Y] != null)
+                return _world.Creatures[position.X, position.Y];
             return null;
         }
 
@@ -41,7 +42,7 @@ namespace LifeSimulation.WorldObjects
 
                 for(int j = 0; j < _world.MapSize.y; j++)
                 {
-                    _world.Creatures[i, j] = _cellCreator.GetActiveCreature();
+                    _world.Creatures[i, j] = _cellCreator.GetActiveCreature(this, _world.MapController, new Position(i, j));
                     currentCount++;
                 }
             }
@@ -49,7 +50,9 @@ namespace LifeSimulation.WorldObjects
 
         public void RemoveCreature(ICreature cell)
         {
+            var position = cell.Transform.Position;
 
+            _world.Creatures[position.X, position.Y] = null;
         }
     }
 }

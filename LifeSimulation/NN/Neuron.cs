@@ -28,7 +28,7 @@ namespace LifeSimulation.NN
         public double FeedForward(double[] signals)
         {
             var sum = 0.0;
-            if (this._neuronType == NeuronType.Input)
+            if (_neuronType == NeuronType.Input)
             {
                 sum += signals.Sum();
 
@@ -36,7 +36,7 @@ namespace LifeSimulation.NN
                 return sum;
             }
 
-            sum += Weights.Select((t, i) => signals[i] * this.Weights[i]).Sum();
+            sum += signals.Sum() * Weights.Sum();
 
             Output = Sigmoid(sum);
             return Output;

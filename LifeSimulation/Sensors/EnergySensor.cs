@@ -1,4 +1,5 @@
-﻿using LifeSimulation.SensorInterfaces;
+﻿using LifeSimulation.ActiveObjectInterfaces;
+using LifeSimulation.SensorInterfaces;
 
 namespace LifeSimulation.Sensors
 {
@@ -6,13 +7,20 @@ namespace LifeSimulation.Sensors
     {
         private static EnergySensor _instance;
 
-        public double GetSense() { return 0; }
+        public ICreature CurrentCreature { get; set; }
+
+        public double GetSense() => GetSatiety();
 
         public ISensor GetSensorInstance()
         {
             if( _instance == null )
                 _instance = new EnergySensor();
             return _instance;
+        }
+
+        private double GetSatiety()
+        {
+            return ((CurrentCreature.Energy - Params.CellMinEnergy) / (Params.CellEnergyCapacity - Params.CellMinEnergy));
         }
     }
 }

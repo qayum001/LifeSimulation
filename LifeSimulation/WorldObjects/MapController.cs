@@ -3,33 +3,26 @@ using LifeSimulation.WorldInterfaces;
 
 namespace LifeSimulation.WorldObjects
 {
-    public class Map : IUpdatable
+    public class MapController
     {
-        private (int x, int y) _mapSize;
-        private double _availableSunEnergy;
-        public Spot[,] Spots { get; set; }
+        private readonly Map _map;
+        private readonly IWorld _world;
+        private readonly (int x, int y) _mapSize;
 
-        public Map((int x, int y) mapSize)
+        public int Height { get; private set; }
+        public int Width { get; private set; }  
+
+        public MapController(IWorld world)
         {
-            _mapSize = mapSize;
+            _world = world;
+            _map = world.Map;
+            _mapSize = _world.MapSize;
+
+            Height = _mapSize.y;
+            Width = _mapSize.x;
         }
 
-        public void Init()
-        {
-            InitSpots();
-        }
-
-        public void Update()
-        {
-            UpdateSpotsSunEnergy();
-        }
-
-        public void SetAvaibleSunEnergy(double avaibleSunEnergy)
-        {
-            _availableSunEnergy = avaibleSunEnergy;
-        }
-
-        public bool IsFree(Transform transform)
+        public Position GetDirectionPosition(Transform transform)
         {
             var direction = transform.Direction;
 
@@ -72,45 +65,17 @@ namespace LifeSimulation.WorldObjects
                     break;
             }
 
-            return false;
+            return newPosition;
         }
 
         public bool IsFree(Position position)
         {
-            return Spots[position.X, position.Y].IsFree;
+            return _map.Spots[position.X, position.Y].IsFree;
         }
 
         public bool IsAvaible(Position position)
         {
             return position.X >= 0 && position.Y >= 0 && position.X < _mapSize.x && position.Y < _mapSize.y;
         }
-        #region Private Methods
-        private void InitSpots()
-        {
-            _availableSunEnergy = 0.0;
-
-            Spots = new Spot[_mapSize.x, _mapSize.y];
-            
-            for(int i = 0; i < _mapSize.x; i++)
-            {
-                for(int j = 0; j < _mapSize.y; j++)
-                {
-                    Spots[i, j] = new Spot();
-                }
-            }
-        }
-        
-        private void UpdateSpotsSunEnergy()
-        {
-            for( int i = 0; i < _mapSize.y; i++)
-            {
-                double currentSunEnergy = 1.1 - ((_mapSize.y - i) / _mapSize.y); // helps to set sun energy for each level of map
-                for(int j = 0; j < _mapSize.x; j++)
-                {
-                    Spots[j, i].SpotSunEnergy = _availableSunEnergy * currentSunEnergy;
-                }
-            }
-        }
-        #endregion
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LifeSimulation.NN
 {
@@ -24,6 +20,20 @@ namespace LifeSimulation.NN
             SetNeuronWeights();
         }
 
+        public void Mutate()
+        {
+            var remainingMutations = _random.Next(3, 7);
+            
+            for(int i = 0; i < remainingMutations; i++)
+            {
+                var layerIndex = _random.Next(_layers.Length);//chosen layer
+                var neuronIndex = _random.Next(_layers[layerIndex].Neurons.Length);//chosen neuron layer
+                var weightIndex = _random.Next(_layers[layerIndex].Neurons[neuronIndex].Weights.Length);
+
+                _layers[layerIndex].Neurons[neuronIndex].Weights[weightIndex] 
+                    += _random.NextDouble() < 0.5 ? _random.NextDouble() : -_random.NextDouble();
+            }
+        }
         public double[] FeedForward(double[] signals)
         {
             var results = new double[_topology.OutputNeuronsCount];
