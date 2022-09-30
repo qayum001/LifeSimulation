@@ -57,6 +57,8 @@ namespace LifeSimulation.Components
 
             newCell.Init();
 
+            newCell.Energy = CurrentCreature.Energy;
+
             newCell.Brain.Mutate();
 
             lifeC.CreateCreature(newCell);

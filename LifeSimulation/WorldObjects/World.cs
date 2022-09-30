@@ -26,7 +26,7 @@ namespace LifeSimulation.WorldObjects
         {
             Map.Init();
             Environment.Init();
-            LifeController.CreateCreature(200);
+            LifeController.CreateCreature(500);
             InitCells();
         }
 

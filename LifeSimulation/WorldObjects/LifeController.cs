@@ -31,7 +31,7 @@ namespace LifeSimulation.WorldObjects
         {
             var cellPos = cell.Transform.Position;
 
-            if (!_world.Map.IsFree(cellPos)) return;
+            if (!_world.MapController.IsFree(cellPos)) return;
 
             _world.Creatures[cellPos.X, cellPos.Y] = cell;
         }
