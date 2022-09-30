@@ -6,12 +6,13 @@ using LifeSimulation.WorldObjects;
 using LifeSimulation.ControlPart;
 using LifeSimulation.Components;
 using LifeSimulation.Sensors;
+using LifeSimulation.ControlPartInterfaces;
 
 namespace LifeSimulation.Creatures
 {
     public class AliveCell : IActiveCreature
     {
-        private Brain _brain;
+        public IBrain Brain { get; set; }
 
         public double Energy { get; set; }
         public LifeController LifeController { get ; set; }
@@ -25,11 +26,12 @@ namespace LifeSimulation.Creatures
             Energy = 200.0;
             InitSensors();
             InitConponents();
-            _brain = new Brain(this);
+            Brain = new Brain(this);
         }
 
         public void Update()
         {
+            IsAbleToLive();
             DoAction();
         }
 
@@ -37,13 +39,21 @@ namespace LifeSimulation.Creatures
         private void DoAction()
         {
             SetThisCellToSensors();
-            var desition = _brain.GetDecision();
+
+            var desition = Brain.GetDecision();
+
+            Components[desition].CurrentCreature = this;
             Components[desition].Action();
         }
 
         private void SetThisCellToSensors()
         {
             foreach (var sensor in Sensors) sensor.CurrentCreature = this;
+        }
+
+        private void IsAbleToLive()
+        {
+            if (Energy < Params.CellMinEnergy || Energy > Params.CellEnergyCapacity) LifeController.RemoveCreature(this);
         }
 
         private void InitSensors()

@@ -75,7 +75,7 @@ namespace LifeSimulation.NN
             var weights = new double[weightsCount];
             for (var i = 0; i < weightsCount; i++)
             {
-                weights[i] = _random.NextDouble();
+                weights[i] = _random.NextDouble() * _random.Next(4);
             }
             return weights;
         }

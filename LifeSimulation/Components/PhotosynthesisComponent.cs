@@ -13,16 +13,31 @@ namespace LifeSimulation.Components
 
         public void Action()
         {
-            throw new NotImplementedException();
+            Photosynthesis();
         }
 
         public IComponent GetComponentInstance()
         {
             if (_instance == null)
-                _instance = new MoveComponent();
+                _instance = new PhotosynthesisComponent();
             return _instance;
         }
 
-        public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
+        private void Photosynthesis()
+        {
+            TakeEnergyToAction();
+
+            var currentPos = CurrentCreature.Transform.Position;
+
+            var mapC = CurrentCreature.MapController;
+
+            CurrentCreature.Energy += mapC.GetSpotEnergy(currentPos);
+
+        }
+
+        private void TakeEnergyToAction()
+        {
+            CurrentCreature.Energy -= Params.CellActionEnergy;
+        }
     }
 }

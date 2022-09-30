@@ -9,8 +9,6 @@ namespace LifeSimulation.ComponentInterfaces
 
         void Action();
 
-        void SetCurrentCell(ICreature creature);
-
         IComponent GetComponentInstance();
     }
 }

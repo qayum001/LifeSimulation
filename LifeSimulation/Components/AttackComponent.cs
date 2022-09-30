@@ -11,16 +11,43 @@ namespace LifeSimulation.Components
 
         public void Action()
         {
-            throw new System.NotImplementedException();
+            Attack();
         }
 
         public IComponent GetComponentInstance()
         {
             if (_instance == null)
-                _instance = new MoveComponent();
+                _instance = new AttackComponent();
             return _instance;
         }
 
-        public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
+        private void Attack()
+        {
+            TakeEnergyToAction();
+
+            var mapC = CurrentCreature.MapController;
+            var lifeC = CurrentCreature.LifeController;
+            var transform = CurrentCreature.Transform;
+
+
+            var directionPos = mapC.GetDirectionPosition(transform);
+
+            if (!mapC.IsAvaible(directionPos)) return;
+
+            if (!mapC.IsFree(directionPos))
+            {
+                var targetCell = lifeC.GetCreature(directionPos);
+                if (targetCell == null) return;
+                CurrentCreature.Energy += targetCell.Energy;
+
+                mapC.SetSpotStatus(true, targetCell.Transform.Position);
+                lifeC.RemoveCreature(targetCell);
+            }
+        }
+
+        private void TakeEnergyToAction()
+        {
+            CurrentCreature.Energy -= Params.CellActionEnergy;
+        }
     }
 }

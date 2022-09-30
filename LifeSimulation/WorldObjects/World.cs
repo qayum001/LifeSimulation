@@ -26,7 +26,7 @@ namespace LifeSimulation.WorldObjects
         {
             Map.Init();
             Environment.Init();
-            LifeController.CreateCreature(100);
+            LifeController.CreateCreature(200);
             InitCells();
         }
 
@@ -38,7 +38,7 @@ namespace LifeSimulation.WorldObjects
 
         #region Private Methods
         private void InitCells()
-        {
+        {     
             foreach(var cell in Creatures)
             {
                 cell?.Init();
@@ -46,10 +46,15 @@ namespace LifeSimulation.WorldObjects
         }
         private void UpdateCells()
         {
+            var i = 0;
+
             foreach (var cell in Creatures)
             {
                 cell?.Update();
+                if (cell != null) i++;
             }
+
+            System.Console.WriteLine(i);
         }
         private void UpdateEnvironment()//sets updated sun energy to map
         {

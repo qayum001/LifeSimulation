@@ -19,9 +19,12 @@ namespace LifeSimulation.WorldObjects
 
         public ICreature GetCreature(Position position)
         {
-            if (_world.Creatures[position.X, position.Y] != null)
-                return _world.Creatures[position.X, position.Y];
-            return null;
+            return _world.Creatures[position.X, position.Y];
+        }
+
+        public void SetCellMovement(Position positon, ICreature cell)
+        {
+            _world.Creatures[positon.X, positon.Y] = cell;
         }
 
         public void CreateCreature(ICreature cell)
@@ -43,6 +46,8 @@ namespace LifeSimulation.WorldObjects
                 for(int j = 0; j < _world.MapSize.y; j++)
                 {
                     _world.Creatures[i, j] = _cellCreator.GetActiveCreature(this, _world.MapController, new Position(i, j));
+
+                    _world.MapController.SetSpotStatus(false, new Position(i, j));
                     currentCount++;
                 }
             }

@@ -22,6 +22,16 @@ namespace LifeSimulation.WorldObjects
             Width = _mapSize.x;
         }
 
+        public double GetSpotEnergy(Position position)
+        {
+            return _map.Spots[position.X, position.Y].SpotSunEnergy;
+        }
+
+        public void SetSpotStatus(bool flag, Position position)
+        {
+            _map.Spots[position.X, position.Y].IsFree = flag;
+        }
+
         public Position GetDirectionPosition(Transform transform)
         {
             var direction = transform.Direction;

@@ -24,9 +24,34 @@ namespace LifeSimulation.Components
 
         private void Move()
         {
+            TakeEnergyToAction();
 
+            var mapC = CurrentCreature.MapController;
+
+            var lifeC = CurrentCreature.LifeController;
+
+            var currentPos = CurrentCreature.Transform.Position;
+
+            var directionPos = mapC.GetDirectionPosition(CurrentCreature.Transform);
+
+            if (!mapC.IsAvaible(directionPos) || !mapC.IsFree(directionPos)) return;
+
+            System.Console.WriteLine("moved");
+
+            lifeC.SetCellMovement(currentPos, null);
+
+            mapC.SetSpotStatus(true, currentPos);
+            
+            CurrentCreature.Transform.Position = directionPos;
+
+            lifeC.SetCellMovement(currentPos, CurrentCreature);
+
+            mapC.SetSpotStatus(false, directionPos);
         }
 
-        public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
+        private void TakeEnergyToAction()
+        {
+            CurrentCreature.Energy -= Params.CellActionEnergy;
+        }
     }
 }

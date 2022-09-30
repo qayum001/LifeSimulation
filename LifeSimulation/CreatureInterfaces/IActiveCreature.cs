@@ -1,5 +1,6 @@
 ﻿using LifeSimulation.ActiveObjectInterfaces;
 using LifeSimulation.ComponentInterfaces;
+using LifeSimulation.ControlPartInterfaces;
 using LifeSimulation.SensorInterfaces;
 
 namespace LifeSimulation.CreatureInterfaces

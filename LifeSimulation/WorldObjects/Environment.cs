@@ -31,7 +31,7 @@ namespace LifeSimulation.WorldObjects
         private void InitDayParams()
         {
             _dayDuration = 0.07;
-            _maxAvailableSunEnergy = 100.0;
+            _maxAvailableSunEnergy = 20.0;
             _time = 0.0;
             _timeCheck = (2.0 * Math.PI) / _dayDuration;
         }

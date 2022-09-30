@@ -8,21 +8,35 @@ namespace LifeSimulation.Components
     public class RotateComponent : IComponent
     {
         private static IComponent _instance;
-        
+
+        private Random _random;
+
         public ICreature CurrentCreature { get; set; }
 
         public void Action()
         {
-            throw new NotImplementedException();
+            Rotate();
         }
 
         public IComponent GetComponentInstance()
         {
             if (_instance == null)
-                _instance = new MoveComponent();
+                _instance = new RotateComponent();
             return _instance;
         }
 
-        public void SetCurrentCell(ICreature creature) => CurrentCreature = creature;
+        private void Rotate()
+        {
+            TakeEnergyToAction();
+
+            _random = new Random();
+
+            CurrentCreature.Transform.Direction = CreatureTransform.Direction.LeftTop + _random.Next(8);
+        }
+        
+        private void TakeEnergyToAction()
+        {
+            CurrentCreature.Energy -= Params.CellActionEnergy;
+        }
     }
 }
